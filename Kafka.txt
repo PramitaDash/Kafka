@@ -1,0 +1,80 @@
+Kafka
+-----
+- It acts as mediator to exchange message (Message Broker).
+- kafka is very useful for real time data exchange
+- Publisher will publish the message and subscriber will consume the message.
+
+Example of Kafka
+----------------
+scenario : 10 Customer place order at Udupi hotel
+step 1: customer place orders
+- Customer App (producer) -> publishes each order to kafka (order_topic).
+Udupi Hotel (Consumer) -> Subscribes to  order_topis and consumes the orders in real-time.
+
+Kafka flow
+----------
+1️⃣ Producer → Sends data (messages) to Kafka topics.
+2️⃣ Broker → Stores the data in partitions for scalability.
+3️⃣ Consumer → Reads data from topics.
+4️⃣ Offset → Keeps track of messages so consumers can resume from where they left off.
+
+👉 Example: In an e-commerce app, the order service (Producer) sends order details to Kafka, and the inventory & billing services (Consumers) read and process the order data.
+
+✅ Kafka Flow: Producer → Topic → Broker → Consumer
+
+Kafka Architecture
+------------------
+
+Zookeeper - This provides environment to run Kafka server
+Kafka server - This acts as message broker
+Kafka Topic - It is used to store and queue messages
+publisher - This will push messages to Kafkatopic 
+Subscriber - This will fetch the message that is pushud to kafka by publisher.
+
+Q. what is Kafka Cluster?
+
+=> Since Kafka is a distributed system, it act as a cluster.
+- A Kafka cluster consist of a set of brokers. A cluster has a minimum of 3 brokers.
+
+Q. what is Kafka Broker?
+
+=> The broker is the Kafka server. It's just a meaningful name given to the Kafka server. And this name makes sense because Kafka acts as a message broker between the producer and the consumer.
+
+- The producer and consumer don't interact directly. They use Kafka server as an agent or a broker to exchange messages.
+
+Q. What is Producer?
+
+=> Producer is an application that sends messages. It does not send messages directly to the recipient. It send messages only to the Kafka server.
+
+Q. What is Consumer?
+
+=> Consumer is an application that reads messages from the Kafka server.
+
+* If producers are sending data, they must be sending it to someone, right? The consumers are the recipients. But remember that the producers don't send data to a recipient address. They just send it to Kafka server. And anyone who is interested in that data can come forward and take it from Kafka server. So , any application that requests data from a Kafka server is consumer, and they can ask for data send by any producer provided they have permissions to read it. 
+
+Q. What is Kafka Topic?
+
+=> We learned that producer sends data to the Kafka broker. Then a consumer can ask for data from the Kafka broker. But the question is, Which data? We need to have some identification mechanism to request data from a broker. Then comes the notion of the topic.
+
+-Topic is like a table in database or folder in a file system.
+-Topic is identified by a name.
+-you can have any number of topics.
+
+Q. What is Kafka Partitions?
+
+=> Kafka Topic are divided into a number of partitions, Which contain records in an unchangeable sequence.
+
+- Kafka Brokers will store messages for a topic. But the capacity of data can be enormous and it may not be possible to store in a single computer. Therefore it will partitioned into multiple parts and distributed among multiple computers, since Kafka is a distributed system.
+
+Q. what is offsets?
+
+=> Offset is sequence of ids given to messages as the arrive at a partition. Once the offset is assigned it will never be changed. The first message gets an offset zero. The next message receives an offset one and so on.
+
+Q. Consumer Groups?
+
+=> A consumer group contains one or more consumers working together to process the messages.
+
+Q. What is Zookeeper?
+
+🔴zookeeper-server-start.bat zookeeper.properties
+🔴kafka-server-start.bat ..\..\config\server.properties
